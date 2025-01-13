@@ -32,12 +32,7 @@ export default function RootLayout({
     <html lang="en"  data-theme="cupcake">
       <body  className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
+        
         {children}
       </body>
     </html>
