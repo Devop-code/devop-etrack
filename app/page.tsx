@@ -13,7 +13,7 @@ export default function Home() {
                      Suivez vos budgets et vos depenses <br /> en toute simplicite avec 
                      notre application intuitive !
                     </p>
-                    <div>
+                    <div className="flex justify-center items-center">
                        <Link href={""} className="btn btn-sm md:btn-md btn-outline btn-accent">
                           Se connecter
                        </Link>
