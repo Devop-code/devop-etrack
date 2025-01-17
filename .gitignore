@@ -19,7 +19,7 @@
 
 # production
 /build
-
+/prisma/.env
 # misc
 .DS_Store
 *.pem
