@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import {test} from '../actions'
-const page = () => {
+const Page = () => {
     useEffect(()=>{
    test()
     },[])
@@ -13,4 +13,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Page;
