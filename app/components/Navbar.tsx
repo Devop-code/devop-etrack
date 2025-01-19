@@ -22,7 +22,7 @@ const Navbar = () => {
               </div>
 
               <div className="md:flex hidden">
-                <Link href={"/budegets"} className="btn">Mes Budgets</Link>
+                <Link href={"/budgets"} className="btn">Mes Budgets</Link>
                 <Link href={""} className="btn">Tableau de Bord</Link>  
                 <Link href={""} className="btn">Mes Transactions</Link>
                 <UserButton/>
