@@ -27,7 +27,7 @@ export async function  checkAndAddUser(email: string | undefined) {
 
 export async function addBuget(email: string,name:string,amount: number,selectedEmoji:string){
    try{
-      const user = await prisma.userfindUnique({
+      const user = await prisma.user.findUnique({
         where:{
             email
         }
@@ -48,4 +48,27 @@ export async function addBuget(email: string,name:string,amount: number,selected
     console.log("erreur lors de l ajout du budget: ",error)
     throw error
    }
+}
+export async function getBudgets(email:string){
+    try{
+        const user = await prisma.user.findUnique({
+            where:{
+                email
+            },
+            include:{
+                budgets:{
+                    include:{
+                        transactions:true
+                    }
+                }
+            }
+        })
+        if(!user){
+            throw new Error("Utilisateur non trouver")
+        }
+        return user.budgets
+    }catch(error){
+        console.log("erreur lors de la récupération des budgets: ",error)
+        throw error
+    }
 }
