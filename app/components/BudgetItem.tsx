@@ -1,17 +1,19 @@
 import React from 'react'
 import {Budget} from '@/types'
 interface BudgetItemProps{
-  budget : Budget
+  budget : Budget;
+  enableHover?:number
 
 }
-const BudgetItem: React.FC<BudgetItemProps>=({budget})=>{
+const BudgetItem: React.FC<BudgetItemProps>=({budget,enableHover})=>{
     const transactionCount = budget.transactions ? budget.transactions.length : 0;
     const totalTransactionAmount = budget.transactions? budget.transactions.reduce((sum,transaction)=> sum + transaction.amount,0) : 0
     const remainingAmount = budget.amount - totalTransactionAmount
     const progressValue = totalTransactionAmount > budget.amount ? 100
     :  (totalTransactionAmount/ budget.amount) *100
+    const hoverClasse = enableHover === 1? "hover:shadow-xl hover:border-accent": "" 
     return(
-        <li key={budget.id} className="p-4 rounded-xl border-base-300 list-none border-2">
+        <li key={budget.id} className={`p-4 rounded-xl border-base-300 list-none border-2 ${hoverClasse}`}>
             <div className="flex items-center justify-between">
                 <div className="flex items-center ">
                     <div className="bg-accent/20 text-xl h-10 w-10 rounded-full
@@ -26,7 +28,7 @@ const BudgetItem: React.FC<BudgetItemProps>=({budget})=>{
                     </div>
                 </div>
                 <div className="text-xl font-bold text-accent">
-                  {budget.amount}
+                  {budget.amount} $
                 </div>
             </div>
           <div className="flex justify-between item-center mt-4 text-gray-500 text-sm">

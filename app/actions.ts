@@ -72,3 +72,22 @@ export async function getBudgets(email:string){
         throw error
     }
 }
+export async function getTransactionByBudgetId(budgetId:string){
+    try{
+        const budget = await prisma.budget.findUnique({
+            where:{
+                id:budgetId
+            },
+            include: {
+                transactions:true
+            }
+        })
+        if(!budget){
+            throw new Error('Budget non trouver');
+        }
+        return budget;
+    }catch(error){
+        console.error("erreur lors de la récupération des transactions: ",error)
+        throw error;
+    }
+}

@@ -1,6 +1,8 @@
 
 import Navbar from "./components/Navbar"
 import Link from "next/link"
+import budgets from "./data";
+import BudgetItem from "./components/BudgetItem";
 export default function Home() {
   return (
     <div>
@@ -23,7 +25,16 @@ export default function Home() {
                           S'inscrire
                        </Link>
                     </div>
-              </div>
+                    <ul className="grid md:grid-cols-3 gap-6 mt-4 md:r-[1200px] mt-6">
+                           {
+                           budgets.map((budget)=>(
+                              <Link href={""} key={budget.id}>
+                              <BudgetItem budget={budget} enableHover={1}/>
+                              </Link>
+                           ))
+                           }
+                        </ul>
+                                    </div>
            </div>  
        </div>
     </div>

@@ -9,6 +9,7 @@ import Notification from "../components/Notification"
 import BudgetItem from "../components/BudgetItem"
 import {Budget} from "@/types"
 import Link from "next/link"
+import { Landmark } from 'lucide-react';
 const page = () => {
    const {user}=useUser()
    const [budgetName , setBudgetName]= useState<string>("")
@@ -36,6 +37,7 @@ const page = () => {
         amount,
         selectedEmoji
       )
+      fetchBudgets()
       const modal = document.getElementById("my_modal_3") as HTMLDialogElement
       if(modal){
         modal.close()
@@ -71,6 +73,7 @@ const page = () => {
 {/* You can open the modal using document.getElementById('ID').showModal() method */}
 <button className="btn" onClick={()=>(document.getElementById('my_modal_3') as HTMLDialogElement).showModal()}>
   Nouveau Budgets
+  <Landmark className='w-4'/>
   </button>
 <dialog id="my_modal_3" className="modal">
   <div className="modal-box">
@@ -118,8 +121,8 @@ const page = () => {
   <ul className="grid md:grid-cols-3 gap-6 mt-4">
    {
     budgets.map((budget)=>(
-      <Link href={""} key={budget.id}>
-        <BudgetItem budget={budget}/>
+      <Link href={`/manage/${budget.id}`} key={budget.id}>
+        <BudgetItem budget={budget} enableHover={1}/>
       </Link>
     ))
    }
