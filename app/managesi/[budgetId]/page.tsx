@@ -103,7 +103,7 @@ console.log(budgetId)
                  >
                   Supprimer le budget
                  </button>
-                 <h2 className="text-bold md:text-sm">remplissez le formulaire pour enregistrer une depense</h2>
+                
                  <div className="space-y-4 flex flex-col mt-4">
                   <input type="text"
                   id="description"
