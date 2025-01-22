@@ -1,10 +1,12 @@
 "use client"
 import Notification from "@/app/components/Notification"
-import { getTransactionByBudgetId ,addTransaction } from '@/app/actions';
+import { getTransactionByBudgetId , deleteTransaction,addTransaction , deleteBudget} from '@/app/actions';
 import BudgetItem from '@/app/components/BudgetItem';
 import Wrapper from '@/app/components/Wrapper';
 import { Budget } from '@/types';
+import { Send ,Trash} from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import {redirect} from 'next/navigation'
 
 const Page = ({params}:{params:Promise<{budgetId:string}>}) => {
     const [budgetId,setBudgetId ] = useState<string>("")
@@ -58,6 +60,34 @@ console.log(budgetId)
         setNotification("vous avez depasser votre budget")  
     }
   }
+  const handleDeleteBudget = async () => {
+   const confirmed = window.confirm(
+      "ete vous sur de vouloir supprimer ce budget et toutes ses transactions associees ?"
+    )
+    if(confirmed){
+      try{
+        await deleteBudget(budgetId)
+      }catch(error){
+        console.error("erreur lors de la suppression du budget",error)
+      }
+      redirect("/budgets")
+    }
+  }
+  const handleDeleteTransaction = async (transactionId:string) => {
+    const confirmed = window.confirm(
+       "ete vous sur de vouloir supprimer cette  transaction ?"
+     )
+     if(confirmed){
+       try{
+         await deleteTransaction(transactionId)
+         fetchBudgetData(budgetId)
+         setNotification("depense supprimer avec success")
+       }catch(error){
+         console.error("erreur lors de la suppression de la transaction",error)
+       }
+
+     }
+   }
   return (
     <Wrapper>
       {notification && (
@@ -68,9 +98,12 @@ console.log(budgetId)
             <div className="flex md:flex-row flex-col">
               <div className="md:w-1/3">
               <BudgetItem budget={budget} enableHover={1}/>
-                 <button className="btn mt-4">
+                 <button className="btn mt-4"
+                 onClick={handleDeleteBudget}
+                 >
                   Supprimer le budget
                  </button>
+                 <h2 className="text-bold md:text-sm">remplissez le formulaire pour enregistrer une depense</h2>
                  <div className="space-y-4 flex flex-col mt-4">
                   <input type="text"
                   id="description"
@@ -91,6 +124,58 @@ console.log(budgetId)
                   <button onClick={handleAddTransaction} className="btn">Ajouter les Depense</button>
                  </div>
               </div>
+              {budget?.transactions &&  budget.transactions.length > 0 ?(
+                  <div className="overflow-x-auto md:mt-0 mt-4 md:w-2/3 ml-4">
+                  <table className="table">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Montant</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {budget?.transactions.map((transaction)=>
+                    
+                    <tr key={transaction.id}>
+                      <td className="text-lg md:text-3xl">{transaction.emoji}</td>
+                    
+                    <td>
+                      <div className="badge badge-accent badge-xs md:badge-sm">
+                       - {transaction.amount}
+                      </div>
+                    </td>
+                    <td>{transaction.description}</td>
+                    <td>{transaction.createdAt.toLocaleDateString("fr-FR")}</td>
+                    <td>{transaction.createdAt.toLocaleTimeString("fr-FR",{
+                      hour : "2-digit",
+                      minute:"2-digit",
+                      second:"2-digit"
+                    })}</td>
+                    <td>
+                      <button className="btn btn-sm"
+                      onClick={() => handleDeleteTransaction(transaction.id)}>
+                          <Trash className="w-4"/>
+                      </button>
+                    </td>
+                  </tr>
+                    
+                    )}
+                      {/* row 3 */}
+                      
+                    </tbody>
+                  </table>
+                </div>
+              ):(
+                 <div className='md:w-2/3 mt-10 md:ml-4 flex items-center justify-center'>
+                  <Send className="w-8 h-8 text-accent" strokeWidth={1.5}/>
+                  <span className='text-gray-500 ml-2'>aucune transactions</span>
+                 </div>
+              )}
             </div>
           )}
     </Wrapper>
