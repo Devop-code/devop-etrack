@@ -109,7 +109,7 @@ console.log(budgetId)
                   id="description"
                   value={description}
                   onChange={(e)=> setDescription(e.target.value)}
-                  placeholder="Description"
+                  placeholder="Description transaction"
                   required
                   className="input input-bordered"/>
 
@@ -117,7 +117,7 @@ console.log(budgetId)
                   id="amount"
                   value={amount}
                   onChange={(e)=> setAmount(e.target.value)}
-                  placeholder="montant"
+                  placeholder="montant transaction"
                   required
                   className="input input-bordered"/>
 
