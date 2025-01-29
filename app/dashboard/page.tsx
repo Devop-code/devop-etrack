@@ -6,12 +6,12 @@ import { getLastBudgets, getLastTransactions, getReachedBudgets, getTotalTransac
 import Wrapper from '../components/Wrapper';
 import { CircleDollarSign, Landmark, PiggyBank } from 'lucide-react';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { Budget, Transaction } from '@/type';
+import { Budget, Transaction } from '@/types';
 import BudgetItem from '../components/BudgetItem';
 import Link from 'next/link';
 import {TransactionItem} from '../components/TransactionItem';
 
-const page = () => {
+const Page = () => {
     const { user } = useUser();
     const [totalAmount, setTotalAmount] = useState<number | null>(null)
     const [isLoading, setIsLoading] = useState(true);
@@ -164,4 +164,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
