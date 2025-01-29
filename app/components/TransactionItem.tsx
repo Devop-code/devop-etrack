@@ -16,10 +16,10 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({transaction}) =
           </button>
        </div>
        <div className='md:hidden flex flex-col items-end'>
-        <span className='font-bold text-sm'>
-            {transaction.description}
+        <span className='font-bold text-sm mr-3'>
+            {transaction.description} 
         </span>
-        <span className='text-sm'>
+        <span className='text-sm '>
             {transaction.createdAt.toLocaleDateString("fr-FR")} a {""}
             {transaction.createdAt.toLocaleTimeString("fr-FR",{
                 hour: '2-digit',
@@ -28,7 +28,7 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({transaction}) =
         </span>
        </div>
        <div className='hidden md:flex'>
-          <span className='font-bold text-sm'>
+          <span className='font-bold text-sm mr-3'>
             {transaction.description}
           </span>
           <div className='hidden md:flex'>
