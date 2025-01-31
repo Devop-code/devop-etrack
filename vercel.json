@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "DATABASE_URL": "file:./dev.db"
+    },
+    "commands": {
+      "build": "prisma generate && next build"
+    }
+  }
+}
