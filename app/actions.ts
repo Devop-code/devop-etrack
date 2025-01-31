@@ -124,7 +124,7 @@ export async function addTransaction(
       );
     }
 
-    const newTransaction = await prisma.transaction.create({
+     await prisma.transaction.create({
       data: {
         description,
         amount,
