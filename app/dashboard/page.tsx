@@ -17,7 +17,7 @@ const Page = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [totalCount, setTotalCount] = useState<number | null>(null)
     const [reachedBudgetsRatio, setReachedBudgetsRatio] = useState<string | null>(null);
-    const [budgetData, setBudgetData] = useState<any[]>([]);
+    const [budgetData, setBudgetData] = useState<[]>([]);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [budgets, setBudgets] = useState<Budget[]>([]);
 
