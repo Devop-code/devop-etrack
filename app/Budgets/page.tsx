@@ -64,6 +64,7 @@ const Page = () => {
    }
    useEffect(()=>{
     fetchBudgets()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[user?.primaryEmailAddress?.emailAddress])
   return (
   <Wrapper>

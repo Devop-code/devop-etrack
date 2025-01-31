@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { SignUp } from '@clerk/nextjs'
 
 export default function Page() {

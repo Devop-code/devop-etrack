@@ -50,7 +50,7 @@ console.log(budgetId)
       if(isNaN(amountNumber)|| amountNumber<=0){
         throw new Error("le montant doit etre un nombre positif")
       }
-      const newTransaction = await addTransaction(budgetId,description,amountNumber)
+     await addTransaction(budgetId,description,amountNumber)
       setNotification("Transaction ajouter avec success ")
       fetchBudgetData(budgetId)
       setAmount("")
@@ -58,6 +58,7 @@ console.log(budgetId)
 
      } catch(error){
         setNotification("vous avez depasser votre budget")  
+        throw error
     }
   }
   const handleDeleteBudget = async () => {

@@ -30,6 +30,7 @@ const Page = () => {
   };
   useEffect(() => {
     fetchTransactions("last30");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.primaryEmailAddress?.emailAddress]);
   return (
     <Wrapper>
