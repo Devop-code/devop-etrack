@@ -81,7 +81,7 @@ const Page = () => {
       {/* if there is a button in form, it will close the modal */}
       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>
-    <h3 className="font-bold text-lg">Creation d'un budgets</h3>
+    <h3 className="font-bold text-lg">Creation d un budgets</h3>
     <p className="py-4">Permet de controler ces depenses facilement</p>
     <div className="w-full flex flex-col">
       <label htmlFor="budgetName" className="text-slate-700 mb-2">Nom du budget</label>
